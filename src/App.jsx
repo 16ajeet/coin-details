@@ -1,10 +1,10 @@
 import React from 'react';
 import CryptoTable from './CryptoTable';
+import './App.scss';
 
 const App = () => {
   return (
     <div>
-      <h1>Cryptocurrency Market</h1>
       <CryptoTable />
     </div>
   );

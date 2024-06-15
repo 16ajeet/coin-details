@@ -47,41 +47,27 @@ const CryptoTable = () => {
 
     return filteredCryptos.map((crypto) => (
       <tr key={crypto.id}>
-        <td>{crypto.name}</td>
+        <td className='logo'><img src={crypto.image} alt={crypto.name} style={{ width: 20, height: 20, borderRadius: '50%' }}/>{crypto.name}</td>
         <td>{crypto.symbol.toUpperCase()}</td>
         <td>${crypto.current_price}</td>
         <td>${crypto.total_volume.toLocaleString()}</td>
-        <td>
-          <img src={crypto.image} alt={crypto.name} style={{ width: 20, height: 20, borderRadius: '50%' }} />
-        </td>
-        <td>{crypto.market_cap.toLocaleString()}</td>
-        <td>{crypto.price_change_percentage_24h.toFixed(2)}%</td>
+        <td className='perc'>{crypto.price_change_percentage_24h.toFixed(2)}%</td>
+        <td>{`Mkt Cap : ${crypto.market_cap.toLocaleString()}`}</td>
       </tr>
     ));
   };
 
   return (
-    <div>
+    <div className='main-container'>
       <input
         type="text"
-        placeholder="Search by name..."
+        placeholder="Search by name or Symbol..."
         value={searchTerm}
         onChange={handleSearchChange}
       />
       <button onClick={handleSortByMarketCap}>Sort by Market Cap</button>
       <button onClick={handleSortByPriceChange}>Sort by % Change</button>
       <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Symbol</th>
-            <th>Price (USD)</th>
-            <th>Volume (24h)</th>
-            <th>Image</th>
-            <th>Market Cap</th>
-            <th>% Change (24h)</th>
-          </tr>
-        </thead>
         <tbody>{renderTableRows()}</tbody>
       </table>
     </div>
